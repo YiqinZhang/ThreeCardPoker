@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ThreeCardPokerHandEvaluator {
+public class PokerHandEvaluator {
     private static final int MIN_PLAYER_COUNT = 1;
     private static final int MAX_PLAYER_COUNT = 8;
     public static void main(String[] args) throws Exception {
@@ -70,7 +70,6 @@ public class ThreeCardPokerHandEvaluator {
                 winners.add(hands[i]);
             }
         }
-
         print(winners);
         return winners;
     }
@@ -81,8 +80,6 @@ public class ThreeCardPokerHandEvaluator {
         }
         for (Hand hand : winner) {
             System.out.print(hand.getId());
-//            System.out.println("winner id is "+ hand.getId() + " ");
-//            System.out.println("winner type is "+ hand.getType() + " ");
         }
     }
 }
