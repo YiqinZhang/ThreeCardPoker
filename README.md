@@ -11,11 +11,11 @@ This program judges a game of three-card poker. The program aims to find the win
 
 ### Source Code:
 
-`Card.java`
+- `Card.java`
 
-`Hand.java`
+- `Hand.java`
 
-`PokerHandEvaluator.java`
+- `PokerHandEvaluator.java`
 
 
 
