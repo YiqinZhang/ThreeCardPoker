@@ -2,12 +2,22 @@
 
 This program judges a game of three-card poker. The program aims to find the winning player and return their id.
 
-
 ## How to run and test
 
-### Prerequisite:
+### Requirement: 
+
 - Java 8
-- Python 3
+- Python3
+
+### Source Code:
+
+`Card.java`
+
+`Hand.java`
+
+`PokerHandEvaluator.java`
+
+
 
 ### Step 1: Change directory to source
 
