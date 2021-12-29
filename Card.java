@@ -1,11 +1,10 @@
 import java.util.HashMap;
 
 public class Card implements Comparable<Card>{
-
     private int rank;
     public Suit suit;
-//    public String suit;
 
+    //convert suit of each card from char to Suit
     public enum Suit {DIAMONDS, HEARTS, CLUBS, SPADES;
         public static Suit fromChar(char c) {
             switch (c) {
@@ -57,8 +56,8 @@ public class Card implements Comparable<Card>{
     }
 
     public Card(String cardString) {
-        if(cardString.length() > 2){
-            throw new IllegalArgumentException("Invalid card");
+        if(cardString.length() != 2){
+            throw new IllegalArgumentException("Invalid card format");
         }
         this.rank = getFaceValue(cardString.charAt(0));
         this.suit = Suit.fromChar(cardString.charAt(1));
@@ -67,7 +66,7 @@ public class Card implements Comparable<Card>{
     //Returns the face value of the card from the map
     public static int getFaceValue(char rank){
         if(!faceValue.containsKey(rank)){
-            throw new IllegalArgumentException("Invalid Rank Value");
+            throw new IllegalArgumentException("Invalid rank value");
         }
         int value = faceValue.get(rank);
         return value;
@@ -90,7 +89,6 @@ public class Card implements Comparable<Card>{
 
     @Override
     public int hashCode() {
-        assert false : "no hashcode implementation";
-        return 17;
+        return this.rank + this.suit.ordinal();
     }
 }

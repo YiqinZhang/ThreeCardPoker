@@ -31,7 +31,7 @@ public class PokerHandEvaluator {
             for (int i = 0; i < playersCount; i++) {
                 line = reader.readLine();
                 if(line.length() > 10){
-                    throw new IllegalArgumentException("Wrong input format");
+                    throw new IllegalArgumentException("Invalid input format");
                 }
                 String id = line.substring(0, 2);
                 if(!idSet.isEmpty()){
@@ -46,6 +46,7 @@ public class PokerHandEvaluator {
             }
             reader.close();
             List<Hand> winners = selectWinners(hands);
+            print(winners);
         } catch (Exception e) {
             System.out.println("Input error: " + e.getMessage());
             e.printStackTrace();
@@ -59,18 +60,17 @@ public class PokerHandEvaluator {
             return winners;
         }
         winners.add(hands[0]);
-        int max = hands[0].getRankValue();
+        int max = hands[0].getScore();
 
         for (int i = 1; i < hands.length; i++) {
-            if (hands[i].getRankValue() > max) {
-                max = hands[i].getRankValue();
+            if (hands[i].getScore() > max) {
+                max = hands[i].getScore();
                 winners.clear();
                 winners.add(hands[i]);
-            } else if (hands[i].getRankValue() == max) {
+            } else if (hands[i].getScore() == max) {
                 winners.add(hands[i]);
             }
         }
-        print(winners);
         return winners;
     }
 

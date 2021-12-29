@@ -15,9 +15,9 @@ public class Hand implements Comparable<Hand> {
     private Card[] cards;
     private String id;
     private Type rankType;
-    private int rankValue;
+    private int score;
 
-
+    //Hand contains an array of cards sorted by rank
     public Hand(String string) throws Exception {
         try{
             id = string.substring(0, 2);
@@ -34,9 +34,8 @@ public class Hand implements Comparable<Hand> {
                 cards[i] = new Card(hand[i]);
             }
             Arrays.sort(cards);
-            calRankValue();
+            calScore();
         }catch(Exception e) {
-            System.out.println("Hand error: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -51,13 +50,13 @@ public class Hand implements Comparable<Hand> {
             cards[i] = new Card(handStr[i]);
         }
         Arrays.sort(cards);
-        calRankValue();
+        calScore();
     }
 
     Hand() {
         id = "";
         cards = new Card[HAND_SIZE];
-        rankValue = 0;
+        score = 0;
     }
 
     public Card[] getCards() {
@@ -72,16 +71,19 @@ public class Hand implements Comparable<Hand> {
         return this.rankType;
     }
 
-    public int getRankValue() {
-        return this.rankValue;
+    public int getScore() {
+        return this.score;
     }
 
     @Override
     public int compareTo(Hand o) {
-        return o.rankValue - rankValue;
+        return o.score - score;
     }
 
-    // get the highCard of each rankType
+/*
+    determines the types of rank of the hand and
+    get the highCard of each rankType
+*/
     private int evaluateHand() {
         if (isStraightFlush()) {
             return getHighCard();
@@ -160,7 +162,7 @@ public class Hand implements Comparable<Hand> {
         }
         return false;
     }
-//     find highest card
+    //  find highest card
     public int getHighCard() {
         int highCard = 0;
         for (int counter = 0; counter < HAND_SIZE; counter++) {
@@ -175,38 +177,38 @@ public class Hand implements Comparable<Hand> {
         }
         return highCard;
     }
-
-    private int calRankValue() {
+    //  calculate the score for the hand
+    private int calScore() {
         int keyValue = evaluateHand();
         switch (getType()) {
             case STRAIGHT_FLUSH:
-                rankValue = keyValue + 5000000;
+                score = keyValue + 5000000;
                 break;
             case THREE_OF_A_KIND:
-                rankValue = keyValue + 1000000;
+                score = keyValue + 1000000;
                 break;
             case STRAIGHT:
-                rankValue = keyValue * 10000;
+                score = keyValue * 10000;
                 break;
             case FLUSH:
-                rankValue += cards[HAND_SIZE - 1].getRank() * 1000 + 10000;
-                rankValue += cards[HAND_SIZE - 2].getRank() * 100;
-                rankValue += cards[HAND_SIZE - 3].getRank() * 10;
+                score += cards[HAND_SIZE - 1].getRank() * 1000 + 10000;
+                score += cards[HAND_SIZE - 2].getRank() * 100;
+                score += cards[HAND_SIZE - 3].getRank() * 10;
                 break;
             case PAIR:
                 if(keyValue == cards[0].getRank()){
-                    rankValue = keyValue * 200 +  cards[2].getRank();
+                    score = keyValue * 200 +  cards[2].getRank();
                 } else {
-                    rankValue = keyValue * 200 +  cards[0].getRank();
+                    score = keyValue * 200 +  cards[0].getRank();
                 }
                 break;
             case HIGH_CARD:
-                rankValue = keyValue;
+                score = keyValue;
                 break;
             default:
                 throw new IllegalArgumentException("Illegal card rank");
         }
-        return rankValue;
+        return score;
     }
 }
 
