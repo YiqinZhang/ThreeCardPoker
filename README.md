@@ -14,8 +14,7 @@ This program judges a game of three-card poker. The program aims to find the win
 - `Card.java`
 
 - `Hand.java`
-
-- `PokerHandEvaluator.java`
+- ` PokerHandEvaluator.java`
 
 
 
@@ -46,11 +45,11 @@ I used Object Oriented Design and Programming to implement the Three Card Poker 
 
 - `Card.java`
 
-  Card class includes two attributes: `<rank><Suit>` . I used a HashMap to interpret the rank from Character to Integer to make it more convenient to compare values. I used enum type to record the suit.
+  Card class includes two attributes: `<rank><Suit>` . I used a HashMap to interpret the rank from Character to Integer to make it more convenient to compare face values. I used the enum Suit to record the suits of the cards.
 
 - `Hand.java`
 
-  Hand class is a collection of cards. In this case, the size is three. It contians four attributes: `<Card[]><id><Type><score>` . The cards are sorted in ascending order by rank. A unique id is assigned to the player, which will be returned as output if winning the game.  I used enum Type to mark the types of hands with different priorities. So in the scoring system for the rank rule, a more prioritized type has more weight.
+  Hand class is a collection of cards. In this case, the size is three. It contians four attributes: `<Card[]><id><Type><score>` . The cards are sorted in ascending order by rank. A unique id is assigned to the player, which will be returned as output if winning the game.  I used enum Type to mark the types of hands with different priorities. So in the scoring system for the rank rule, a more prioritized type has more weight. The `calScore` function calculates the score for the hand and stores it in the score field of the hand objects. 
 
 - `PokerHandEvaluator.java`
 
@@ -60,8 +59,8 @@ I used Object Oriented Design and Programming to implement the Three Card Poker 
 
 ### Program Limitations
 
-- Each input file must have at least one player and no more than eight players in each game. No player or more than eight players will throw an IllegalArgumentException.
-- Each input file portrays a game with n different number of players. Each player has only one hand to play the game. Having duplicate player ids will trigger an IllegalArgumentException.
-- The poker game is not restricted to one standard 52-card deck with 13 ranks in 4 suits because There is no check on the duplicate card of the same rank and suit.
+- The poker game is not restricted to one standard 52-card deck because there is no check on the duplicate card of the same rank and suit.
 - If the program is scalable to more cards like a five or seven cards poker game, it would be better to implement a comparator in the  PokerHandEvaluator class.
+- Each input file must have at least one player and no more than eight players in each game. No player or more than eight players will throw an IllegalArgumentException.
+- Each player has only one hand to play the game. Having duplicate player ids will trigger an IllegalArgumentException.
 
